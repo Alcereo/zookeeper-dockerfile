@@ -15,10 +15,17 @@ RUN curl -O -J -L http://apache-mirror.rbc.ru/pub/apache/zookeeper/zookeeper-3.4
 tar -xf /zookeeper-3.4.10.tar.gz && \
 rm -rf /zookeeper-3.4.10.tar.gz; \
 chmod +x /entrypoint.sh && \
-cp /zoo.properties /zookeeper-3.4.10/conf/zoo.cfg
+mv /zookeeper-3.4.10 /opt/zookeeper
 
 
-ENV ZK_DIR="/zookeeper-3.4.10"
+ENV ZK_DIR="/opt/zookeeper"
 
+
+ENV CLIENT_PORT=2181
+ENV TICK_TIME=2000
+ENV INIT_LIMIT=10
+ENV SYNC_LIMIT=5
+ENV NODES_LIST=""
+ENV NODE_ID=""
 
 CMD ["/entrypoint.sh"]
